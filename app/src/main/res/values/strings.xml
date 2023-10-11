@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Phones</string>
+    <string name="iphone">IPhone</string>
+    <string name="samsung">SAMSUNG</string>
+    <string name="unknown">UNKNOWN</string>
+    <string name="phones">Phones</string>
+</resources>

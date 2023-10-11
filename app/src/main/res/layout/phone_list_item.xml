@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="phone"
+            type="com.example.phones.presentation.models.PhoneUiModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="18dp"
+        android:orientation="horizontal"
+        android:weightSum="6">
+
+        <TextView
+            android:id="@+id/phone_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="@{phone.name}"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:text="IPHONE 14 PRO MAX" />
+
+        <TextView
+            android:id="@+id/phone_brand"
+            setBrand="@{phone.brand}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:text="IPHONE" />
+
+    </LinearLayout>
+</layout>
