@@ -9,8 +9,6 @@ class MyViewModelFactory(private val getAllPhonesUseCase: PhonesUseCase): ViewMo
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return if (modelClass::class.java.isInstance(PhonesScreenViewModel::class.java)) {
             PhonesScreenViewModel(getAllPhonesUseCase) as T
-        } else {
-            throw IllegalArgumentException("View Model class not found")
-        }
+        } else { throw IllegalArgumentException("View Model class not found") }
     }
 }

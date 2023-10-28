@@ -21,10 +21,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4"
+            android:paddingStart="16dp"
             android:text="@{phone.name}"
-            android:textAlignment="center"
+            android:textAlignment="textStart"
             android:textColor="@color/black"
             android:textSize="18sp"
+            tools:ignore="RtlSymmetry"
             tools:text="IPHONE 14 PRO MAX" />
 
         <TextView
@@ -37,6 +39,5 @@
             android:textColor="@color/black"
             android:textSize="18sp"
             tools:text="IPHONE" />
-
     </LinearLayout>
 </layout>
