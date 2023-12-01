@@ -1,36 +1,43 @@
 package com.example.phones.domain.exceptions
 
+import android.util.Log
 import java.lang.Exception
-
+private const val TAG = "PhoneCustomException"
 sealed class PhoneCustomException(
-    val errorCode: PhoneErrorCode,
-    errorMessage: String
+    private val errorMessage: String
 ) : Exception(errorMessage) {
-
-
     companion object {
-        const val NOT_FOUND_MESSAGE = "Not Found"
-        const val REQUEST_TIME_OUT_MESSAGE = "Request Timeout"
+        fun mapException(errorCode: Int, errorMessage: String) {
+            when (errorCode) {
+                PhoneErrorCode.NotFound.code -> {
+                    Log.e(TAG, "mapException: NotFound", )
+                    throw NotFoundException(errorMessage)
+                }
 
-        fun mapException(phoneCustomExceptions: PhoneCustomException) {
-            when (phoneCustomExceptions.errorCode) {
-                PhoneErrorCode.NotFound -> { throw NotFoundException() }
-                PhoneErrorCode.RequestTimeout -> { throw RequestTimeoutException() }
-                PhoneErrorCode.Other -> { throw OtherException(message = phoneCustomExceptions.message.toString()) }
+                PhoneErrorCode.RequestTimeout.code -> {
+                    Log.e(TAG, "mapException: RequestTimeout", )
+
+                    throw RequestTimeoutException(errorMessage)
+                }
+
+                else -> {
+                    Log.e(TAG, "mapException: Other", )
+
+                    throw OtherException(errorMessage)
+                }
             }
         }
     }
 
     data class NotFoundException(
-        val code: PhoneErrorCode = PhoneErrorCode.NotFound
-    ) : PhoneCustomException(code, NOT_FOUND_MESSAGE)
+        val msg: String
+    ) : PhoneCustomException(errorMessage = msg)
 
     data class RequestTimeoutException(
-        val code: PhoneErrorCode = PhoneErrorCode.RequestTimeout
-    ) : PhoneCustomException(code, REQUEST_TIME_OUT_MESSAGE)
+        val msg: String
+    ) : PhoneCustomException(errorMessage = msg)
 
     data class OtherException(
-        val code: PhoneErrorCode = PhoneErrorCode.Other,
-        override val message: String
-    ) : PhoneCustomException(code, message)
+        val msg: String
+    ) : PhoneCustomException(errorMessage = msg)
 }
